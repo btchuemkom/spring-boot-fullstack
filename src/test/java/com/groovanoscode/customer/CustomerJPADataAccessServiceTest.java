@@ -22,6 +22,7 @@ class CustomerJPADataAccessServiceTest {
 
     @Mock
     private CustomerRepository customerRepository;
+
     @BeforeEach
     void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);//We need to initialize the Mock, because we are using Mock annotations
