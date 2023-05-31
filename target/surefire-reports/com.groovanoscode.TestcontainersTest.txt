@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.groovanoscode.TestcontainersTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.2 s - in com.groovanoscode.TestcontainersTest
