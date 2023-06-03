@@ -32,6 +32,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          # Slack channel id, channel name, or user id to post message.
+          # See also: https://api.slack.com/methods/chat.postMessage#channels
+          # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
+          channel-id: 'spring-boot-full-stack-deployments'
+          # For posting a simple plain text message
+          slack-message: "Test"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
       - name: Send Slack Message - Deployment started
         run: >
           curl && curl -X POST -H 'Content-type: application/json' 
