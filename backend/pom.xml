@@ -184,7 +184,7 @@
 
 					<to>
 						<image>docker.io/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
-						//docker.io/btchuemkom/groovanoscode-api:2023....
+<!--						docker.io/btchuemkom/groovanoscode-api:2023....-->
 <!--						<image>docker.io/btchuemkom/groovanoscode-api:0.0.1-SNAPSHOT</image>-->
 						<tags>
 							<tag>latest</tag>
