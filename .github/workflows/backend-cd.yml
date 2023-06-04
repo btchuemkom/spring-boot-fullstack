@@ -40,9 +40,9 @@ jobs:
 
       - name: Send Slack Message - Deployment started
         run: >
-          curl && curl -X POST -H 'Content-type: application/json' 
+          curl -X POST -H 'Content-type: application/json' 
           --data '
-              {"text":":battery_charge: Deployment started!" }
+              {"text":":battery_charge: Deployment started!"}
             '
           ${{ secrets.SLACK_WEBHOOK_URL }}
 
