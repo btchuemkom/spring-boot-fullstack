@@ -38,18 +38,27 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: Post to a Slack channel
+      - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          # Slack channel id, channel name, or user id to post message.
-          # See also: https://api.slack.com/methods/chat.postMessage#channels
-          # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
-          channel-id: 'C05AYLTLM9S'
-          # For posting a simple plain text message
-          slack-message: "GitHub Test Message"
+          # For posting a rich message using Block Kit
+          payload: |
+            {
+              "text": "GitHub Action build result",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action build result"
+                  }
+                }
+              ]
+            }
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
       - name: Send Slack Message - Deployment started
         run: >
