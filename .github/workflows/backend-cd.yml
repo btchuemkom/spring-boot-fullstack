@@ -38,23 +38,10 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-#      - name: Send Slack Message - Deployment started
-#        run: >
-#          curl -X POST -H 'Content-type: application/json' --data '{"text":":battery_charge: Deployment started!"}' https://hooks.slack.com/services/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
-##          curl -X POST -H 'Content-type: application/json' --data '{"text":":battery_charge: Deployment started!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: Post to a Slack channel
-        id: slack
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          # Slack channel id, channel name, or user id to post message.
-          # See also: https://api.slack.com/methods/chat.postMessage#channels
-          # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
-          channel-id: 'C05AYLTLM9S'
-          # For posting a simple plain text message
-          slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      - name: Send Slack Message - Deployment started
+        run: >
+          curl -X POST -H 'Content-type: application/json' --data '{"text":":battery_charge: Deployment started!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+#          curl -X POST -H 'Content-type: application/json' --data '{"text":":battery_charge: Deployment started!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
