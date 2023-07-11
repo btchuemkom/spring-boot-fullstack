@@ -61,8 +61,8 @@ class CustomerJPADataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID(),
-                20
-        );
+                20,
+                Gender.MALE);
 
         // When
         underTest.insertCustomer(customer);
@@ -113,8 +113,8 @@ class CustomerJPADataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID(),
-                20
-        );
+                20,
+                Gender.MALE);
 
         // When
         underTest.updateCustomer(customer);

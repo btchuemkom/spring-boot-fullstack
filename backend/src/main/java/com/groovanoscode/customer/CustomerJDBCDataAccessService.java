@@ -23,7 +23,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
         // Instead of "id, name, email, age" you can use *
         // SELECT * from customer
         var sql = """
-                SELECT id, name, email, age
+                SELECT id, name, email, age, gender
                 FROM customer
                 """;
 
@@ -34,7 +34,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
     @Override
     public Optional<Customer> selectCustomerById(Integer customerId) {
         var sql = """
-                SELECT id, name, email, age 
+                SELECT id, name, email, age, gender 
                 FROM customer
                 WHERE id=?
                 """;
@@ -48,10 +48,12 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
     @Override
     public void insertCustomer(Customer customer) {
         var sql = """
-                INSERT INTO customer(name, email, age)
-                VALUES (?, ?, ?)
+                INSERT INTO customer(name, email, age, gender)
+                VALUES (?, ?, ?, ?)
                 """;
-        int result = jdbcTemplate.update(sql, customer.getName(), customer.getEmail(), customer.getAge());
+
+        //customer.getGender() is an Enum but this has to be a String here. It is the reason why we have customer.getGender().name()
+        int result = jdbcTemplate.update(sql, customer.getName(), customer.getEmail(), customer.getAge(), customer.getGender().name());
 
         System.out.println("jdbcTemplate.update = " + result);
 
@@ -120,5 +122,15 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
 
             System.out.println("update customer age result = " + result);
         }
+
+        if(customer.getGender() != null){
+            String sql = "UPDATE customer SET gender = ? WHERE id = ?";
+
+            //customer.getGender() is an Enum but this has to be a String here. It is the reason why we have customer.getGender().name()
+            int result = jdbcTemplate.update(sql, customer.getGender().name(), customer.getId());
+
+            System.out.println("update customer gender result = " + result);
+        }
     }
+
 }

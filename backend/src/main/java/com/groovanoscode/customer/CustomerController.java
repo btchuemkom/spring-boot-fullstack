@@ -39,4 +39,9 @@ public class CustomerController {
                                    @RequestBody CustomerUpdateRequest request){
         customerService.updateCustomerById(customer_id, request);
     }
+
+    /*@PutMapping("/update/gender")
+    public void updateGenderOfCustomers(){
+        customerService.updateGenderOfCustomers();
+    }*/
 }

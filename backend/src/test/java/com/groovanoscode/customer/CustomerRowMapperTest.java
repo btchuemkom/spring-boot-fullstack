@@ -22,12 +22,13 @@ class CustomerRowMapperTest {
         Mockito.when(resultSet.getString("name")).thenReturn("Jamila");
         Mockito.when(resultSet.getString("email")).thenReturn("jamila@gmail.com");
         Mockito.when(resultSet.getInt("age")).thenReturn(19);
+        Mockito.when(resultSet.getString("gender")).thenReturn("FEMALE");
 
         // When
         Customer actual = customerRowMapper.mapRow(resultSet, 1);
 
         // Then
-        Customer expected = new Customer(1, "Jamila", "jamila@gmail.com", 19);
+        Customer expected = new Customer(1, "Jamila", "jamila@gmail.com", 19, Gender.FEMALE);
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }

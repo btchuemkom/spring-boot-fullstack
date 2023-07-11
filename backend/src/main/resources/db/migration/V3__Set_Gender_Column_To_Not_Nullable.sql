@@ -1,0 +1,2 @@
+ALTER TABLE customer
+ALTER COLUMN gender TYPE VARCHAR(6);

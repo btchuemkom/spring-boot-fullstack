@@ -17,4 +17,5 @@ public interface CustomerDao {
     boolean existsCustomerWithId(Integer customer_id);
 
     void updateCustomer(Customer customer);
+
 }

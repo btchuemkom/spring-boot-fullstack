@@ -42,8 +42,8 @@ public class CustomerService {
         Customer customer = new Customer(
                 customerRegistrationRequest.name(),
                 customerRegistrationRequest.email(),
-                customerRegistrationRequest.age()
-        );
+                customerRegistrationRequest.age(),
+                customerRegistrationRequest.gender());
         customerDao.insertCustomer(customer);
     }
 
@@ -86,6 +86,11 @@ public class CustomerService {
             changes = true;
         }
 
+        if(request.gender() != null && !request.gender().equals(customer.getGender())){
+            customer.setGender(request.gender());
+            changes = true;
+        }
+
         // check if there is something to update if not throw a BadRequestException
         if(!changes)
         {
@@ -95,4 +100,16 @@ public class CustomerService {
         // Update the customer data
         customerDao.updateCustomer(customer);
     }
+
+    public void updateGenderOfCustomers() {
+        List<Customer> customers = customerDao.selectAllCustomers();
+        customers.forEach(customer -> {
+            int age = customer.getAge();
+            Gender gender = age % 2 == 0 ? Gender.FEMALE : Gender.MALE;
+            customer.setGender(gender);
+            customerDao.updateCustomer(customer);
+        });
+    }
+
+
 }
