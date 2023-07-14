@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "groovanoscode-api",
-      "image": "btchuemkom/groovanoscode-api:14.07.2023.14.13.06",
+      "image": "btchuemkom/groovanoscode-api:14.07.2023.14.33.32",
       "essential": true,
       "memory": 512,
       "portMappings": [
