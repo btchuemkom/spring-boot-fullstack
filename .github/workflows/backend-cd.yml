@@ -53,9 +53,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
-      - name: Send Slack Message - Building with Maven
-        run: >
-          curl -X POST -H 'Content-type: application/json' --data '{"text":":apache_maven: Building with Maven"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+#      - name: Send Slack Message - Building with Maven
+#        run: >
+#          curl -X POST -H 'Content-type: application/json' --data '{"text":":apache_maven: Building with Maven"}' ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Set build number
         id: build-number
@@ -64,9 +64,9 @@ jobs:
       - name: Build Package Push with Maven
         run: mvn -ntp -B verify -Ddocker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
 
-      - name: Send Slack Message - Update Docker Image
-        run: >
-          curl -X POST -H 'Content-type: application/json' --data '{"text":":docker: Docker Image Tag: ${{steps.build-number.outputs.BUILD_NUMBER}} pushed to https://hub.docker.com/repository/docker/btchuemkom/groovanoscode-api/tags?page=1&ordering=last_updated"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+#      - name: Send Slack Message - Update Docker Image
+#        run: >
+#          curl -X POST -H 'Content-type: application/json' --data '{"text":":docker: Docker Image Tag: ${{steps.build-number.outputs.BUILD_NUMBER}} pushed to https://hub.docker.com/repository/docker/btchuemkom/groovanoscode-api/tags?page=1&ordering=last_updated"}' ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Update Dockerrun.aws.json api image tag with new build number
         run: |
