@@ -13,8 +13,8 @@ Spring:
     username: groovanoscode
     password: password
     hikari:
-      connection-timeout: 800000
-      maximum-pool-size: 15
+      connection-timeout: 600000
+      maximum-pool-size: 50
       max-lifetime: 1800000
 
   jpa:
