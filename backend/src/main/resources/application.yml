@@ -12,6 +12,10 @@ Spring:
     url: jdbc:postgresql://localhost:5432/customer
     username: groovanoscode
     password: password
+    hikari:
+      connection-timeout: 600000
+      maximum-pool-size: 15
+      max-lifetime: 1800000
 
   jpa:
     hibernate:
