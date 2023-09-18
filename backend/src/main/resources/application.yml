@@ -27,10 +27,3 @@ spring:
 
   main:
     web-application-type: servlet
-
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-
-
