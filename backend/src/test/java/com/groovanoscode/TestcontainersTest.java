@@ -3,6 +3,8 @@ package com.groovanoscode;
 import org.junit.jupiter.api.Test;
 import org.assertj.core.api.Assertions;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Here we want to test the DAO Layer
  * This is an Unit-Test and for unit-test we should never user @SpringBootTest
@@ -14,8 +16,8 @@ public class TestcontainersTest extends AbstractTestcontainers {
 
     @Test
     void canStartPostgresDB() {
-        Assertions.assertThat(postgreSQLContainer.isRunning()).isTrue();
-        Assertions.assertThat(postgreSQLContainer.isCreated()).isTrue();
+        assertThat(postgreSQLContainer.isRunning()).isTrue();
+        assertThat(postgreSQLContainer.isCreated()).isTrue();
     }
 
 }

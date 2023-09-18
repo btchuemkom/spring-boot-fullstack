@@ -6,7 +6,6 @@ import com.groovanoscode.customer.Customer;
 import com.groovanoscode.customer.CustomerRegistrationRequest;
 import com.groovanoscode.customer.CustomerUpdateRequest;
 import com.groovanoscode.customer.Gender;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +17,8 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CustomerIntegrationTest {
@@ -67,7 +68,7 @@ public class CustomerIntegrationTest {
         Customer expectedCustomer = new Customer(
                 name, email, age, gender);
 
-        Assertions.assertThat(allCustomers)
+        assertThat(allCustomers)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
                 .contains(expectedCustomer);
 
@@ -224,6 +225,6 @@ public class CustomerIntegrationTest {
         Customer expectedCustomer = new Customer(
                 id, newName, email, age, gender
         );
-        Assertions.assertThat(updatedCustomer).isEqualTo(expectedCustomer);
+        assertThat(updatedCustomer).isEqualTo(expectedCustomer);
     }
 }
