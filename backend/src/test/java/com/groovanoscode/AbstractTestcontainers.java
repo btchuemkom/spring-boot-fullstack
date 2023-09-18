@@ -19,12 +19,6 @@ import javax.sql.DataSource;
 @Testcontainers
 public abstract class AbstractTestcontainers {
 
-    @Container
-    protected static final PostgreSQLContainer<?> postgreSQLContainer =
-            new PostgreSQLContainer<>("postgres:latest")
-                    .withDatabaseName("groovanoscode-dao-unit-test")
-                    .withUsername("groovanoscode")
-                    .withPassword("password");
     @BeforeAll
     static void beforeAll() {
         //Before to run a test we must first execute the migration
@@ -35,6 +29,13 @@ public abstract class AbstractTestcontainers {
         ).load();
         flyway.migrate();
     }
+
+    @Container
+    protected static final PostgreSQLContainer<?> postgreSQLContainer =
+            new PostgreSQLContainer<>("postgres:latest")
+                    .withDatabaseName("groovanoscode-dao-unit-test")
+                    .withUsername("groovanoscode")
+                    .withPassword("password");
 
     /**
      * We need to connect our database 'groovanoscode-dao-unit-test' to our application
