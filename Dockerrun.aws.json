@@ -15,7 +15,7 @@
     },
     {
       "name": "groovanoscode-api",
-      "image": "btchuemkom/groovanoscode-api:07.09.2023.17.49.45",
+      "image": "btchuemkom/groovanoscode-api:18.09.2023.11.46.39",
       "essential": true,
       "memory": 512,
       "portMappings": [
