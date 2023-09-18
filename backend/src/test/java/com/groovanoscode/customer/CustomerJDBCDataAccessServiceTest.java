@@ -15,7 +15,6 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
 
     private CustomerJDBCDataAccessService underTest;
     private final CustomerRowMapper customerRowMapper = new CustomerRowMapper();
-    @Test
     @BeforeEach
     void setUp() {
         underTest = new CustomerJDBCDataAccessService(
