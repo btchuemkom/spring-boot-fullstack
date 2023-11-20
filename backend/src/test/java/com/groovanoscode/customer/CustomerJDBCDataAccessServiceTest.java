@@ -28,7 +28,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID(),
-                20,
+                "password" , 20,
                 Gender.MALE); // We use "FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID()," because we want the email address to be unique. The name or the age must not be unique, we can have more than one user with the same name or age, it is not a problem
         underTest.insertCustomer(customer);
 
@@ -48,7 +48,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password" , 20,
                 Gender.FEMALE); // We use "FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID()," because we want the email address to be unique. The name or the age must not be unique, we can have more than one user with the same name or age, it is not a problem
 
         underTest.insertCustomer(customer);
@@ -94,7 +94,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password" , 20,
                 Gender.FEMALE); // We use "FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID()," because we want the email address to be unique. The name or the age must not be unique, we can have more than one user with the same name or age, it is not a problem
 
         underTest.insertCustomer(customer);
@@ -128,7 +128,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password" , 20,
                 Gender.MALE); // We use "FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID()," because we want the email address to be unique. The name or the age must not be unique, we can have more than one user with the same name or age, it is not a problem
 
         underTest.insertCustomer(customer);
@@ -159,7 +159,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password" , 20,
                 Gender.FEMALE);
 
         underTest.insertCustomer(customer);
@@ -185,7 +185,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password" , 20,
                 Gender.MALE);
 
         underTest.insertCustomer(customer);
@@ -222,7 +222,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         String email = FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID();
         int age = 35;
 
-        Customer customer = new Customer(name, email, age, Gender.MALE);
+        Customer customer = new Customer(name, email, "password" , age, Gender.MALE);
 
         underTest.insertCustomer(customer);
 
@@ -259,7 +259,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         String email = FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID();
         int age = 35;
 
-        Customer customer = new Customer(name, email, age, Gender.MALE);
+        Customer customer = new Customer(name, email, "password" , age, Gender.MALE);
 
         underTest.insertCustomer(customer);
 
@@ -296,7 +296,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         String email = FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID();
         int age = 35;
 
-        Customer customer = new Customer(name, email, age, Gender.FEMALE);
+        Customer customer = new Customer(name, email, "password" , age, Gender.FEMALE);
 
         underTest.insertCustomer(customer);
 
@@ -333,7 +333,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         String email = FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID();
         int age = 35;
 
-        Customer customer = new Customer(name, email, age, Gender.MALE);
+        Customer customer = new Customer(name, email, "password" , age, Gender.MALE);
 
         underTest.insertCustomer(customer);
 
@@ -370,7 +370,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         String email = FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID();
         int age = 35;
 
-        Customer customer = new Customer(name, email, age, Gender.MALE);
+        Customer customer = new Customer(name, email, "password" , age, Gender.MALE);
 
         underTest.insertCustomer(customer);
 
@@ -408,7 +408,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         String email = FAKER.internet().safeEmailAddress() + "_" + UUID.randomUUID();
         int age = 35;
 
-        Customer customer = new Customer(name, email, age, Gender.MALE);
+        Customer customer = new Customer(name, email, "password" , age, Gender.MALE);
 
         underTest.insertCustomer(customer);
 

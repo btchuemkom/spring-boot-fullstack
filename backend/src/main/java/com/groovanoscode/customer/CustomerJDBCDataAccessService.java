@@ -23,7 +23,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
         // Instead of "id, name, email, age" you can use *
         // SELECT * from customer
         var sql = """
-                SELECT id, name, email, age, gender
+                SELECT id, name, email, password, age, gender
                 FROM customer
                 """;
 
@@ -34,7 +34,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
     @Override
     public Optional<Customer> selectCustomerById(Integer customerId) {
         var sql = """
-                SELECT id, name, email, age, gender 
+                SELECT id, name, email, password, age, gender 
                 FROM customer
                 WHERE id=?
                 """;
@@ -48,12 +48,12 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
     @Override
     public void insertCustomer(Customer customer) {
         var sql = """
-                INSERT INTO customer(name, email, age, gender)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO customer(name, email, password, age, gender)
+                VALUES (?, ?, ?, ?, ?)
                 """;
 
         //customer.getGender() is an Enum but this has to be a String here. It is the reason why we have customer.getGender().name()
-        int result = jdbcTemplate.update(sql, customer.getName(), customer.getEmail(), customer.getAge(), customer.getGender().name());
+        int result = jdbcTemplate.update(sql, customer.getName(), customer.getEmail(), customer.getPassword(), customer.getAge(), customer.getGender().name());
 
         System.out.println("jdbcTemplate.update = " + result);
 
@@ -115,6 +115,14 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
             System.out.println("update customer email result = " + result);
         }
 
+        if(customer.getPassword() != null){
+            String sql = "UPDATE customer SET password = ? WHERE id = ?";
+
+            int result = jdbcTemplate.update(sql, customer.getPassword(), customer.getId());
+
+            System.out.println("update customer email result = " + result);
+        }
+
         if(customer.getAge() != null){
             String sql = "UPDATE customer SET age = ? WHERE id = ?";
 
@@ -131,6 +139,21 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
 
             System.out.println("update customer gender result = " + result);
         }
+    }
+
+    @Override
+    public Optional<Customer> selectUserByEmail(String email) {
+        var sql = """
+                SELECT id, name, email, password, age, gender 
+                FROM customer
+                WHERE email=?
+                """;
+
+
+        return jdbcTemplate.query(sql, customerRowMapper, email)
+                .stream()
+                .findFirst();
+
     }
 
 }
