@@ -1,13 +1,14 @@
-import {Form, Formik, useField} from 'formik';
+import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import {Alert, AlertIcon, Box, Button, FormLabel, Input, Select, Stack} from "@chakra-ui/react";
-import {saveCustomer} from "../services/client.js";
-import {successNotification, errorNotification} from "../services/notification.js";
+import {updateCustomer} from "../../services/client.js";
+import {successNotification, errorNotification} from "../../services/notification.js";
+
 
 const MyTextInput = ({ label, ...props }) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
     // which we can spread on <input>. We can use field meta to show an error
-    // message if the field is invalid, and it has been touched (i.e. visited)
+    // message if the field is invalid and it has been touched (i.e. visited)
     const [field, meta] = useField(props);
     return (
         <Box>
@@ -40,16 +41,12 @@ const MySelect = ({ label, ...props }) => {
 };
 
 // And now we can use these
-const CreateCustomerForm = ({ fetchCustomers }) => {
+const UpdateCustomerForm = ({ fetchCustomers, initialValues, customerId }) => {
+
     return (
         <>
             <Formik
-                initialValues={{
-                    name: '',
-                    email: '',
-                    age: 0,
-                    gender: '',
-                }}
+                initialValues={initialValues}
                 validationSchema={Yup.object({
                     name: Yup.string()
                         .max(15, 'Must be 15 characters or less')
@@ -61,21 +58,15 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                         .min(16, 'Must be at least 16 years of age')
                         .max(100, 'Must be less than 100 years of age')
                         .required('Required'),
-                    gender: Yup.string()
-                        .oneOf(
-                            ['MALE', 'FEMALE'],
-                            'Invalid Gender'
-                        )
-                        .required('Required'),
                 })}
-                onSubmit={(customer, {setSubmitting}) => {
+                onSubmit={(updatedCustomer, { setSubmitting }) => {
                     setSubmitting(true);
-                    saveCustomer(customer)
+                    updateCustomer(customerId, updatedCustomer)
                         .then(res => {
                             console.log(res);
                             successNotification(
-                                "Customer saved",
-                                `${customer.name} was successfully saved`
+                                "Customer updated",
+                                `${updatedCustomer.name} was successfully updated`
                             );
                             fetchCustomers();
                         })
@@ -91,7 +82,7 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                         })
                 }}
             >
-                {({ isValid, isSubmitting }) => (
+                {({isValid, isSubmitting, dirty}) => (
                     <Form>
                         <Stack spacing={"24px"}>
                             <MyTextInput
@@ -115,20 +106,13 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                                 placeholder="20"
                             />
 
-                            <MySelect label="Gender" name="gender">
-                                <option value="">Select gender</option>
-                                <option value="MALE">Male</option>
-                                <option value="FEMALE">Female</option>
-                            </MySelect>
-
-                            <Button type="submit" disabled={!isValid || isSubmitting} >Submit</Button>
+                            <Button disabled={!(isValid && dirty) || isSubmitting} type="submit">Submit</Button>
                         </Stack>
                     </Form>
                 )}
-
             </Formik>
         </>
     );
 };
 
-export default CreateCustomerForm;
+export default UpdateCustomerForm;

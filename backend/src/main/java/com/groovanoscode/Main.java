@@ -42,10 +42,12 @@ public class Main {
             Customer customer = new Customer(
                     firstName + " " + lastName,
                     email,
-                    passwordEncoder.encode(UUID.randomUUID().toString()) , random.nextInt(16, 99),
+                    passwordEncoder.encode("password"),
+                    age,
                     gender);
 
             customerRepository.save(customer);
+            System.out.println(email);
         };
     }
 }
