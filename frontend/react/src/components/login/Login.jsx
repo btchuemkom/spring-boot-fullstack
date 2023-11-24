@@ -127,6 +127,9 @@ const Login = () => {
                         <Heading fontSize={'2xl'} mb={15}>Sign in to your account</Heading>
                     </Flex>
                     <LoginForm />
+                    <Link color={"blue.500"} href={"/signup"}>
+                        Dont have an account? Sign up now.
+                    </Link>
                 </Stack>
             </Flex>
             <Flex
@@ -151,7 +154,7 @@ const Login = () => {
                 />
             </Flex>
         </Stack>
-    )
+    );
 }
 
 export default Login;
