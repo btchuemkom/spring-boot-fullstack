@@ -17,7 +17,7 @@ management:
 
 spring:
   datasource:
-    url: jdbc:postgresql://awseb-e-bza2n8fru6-stack-awsebrdsdatabase-ihjxjscl7z9c.cbozedak9ijx.eu-central-1.rds.amazonaws.com:5432/ebdb
+    url: jdbc:postgresql://awseb-e-kkqkvpzwer-stack-awsebrdsdatabase-0uwlranq1kuz.cbozedak9ijx.eu-central-1.rds.amazonaws.com:5432/ebdb
     username: groovanoscode
     password: password
 
