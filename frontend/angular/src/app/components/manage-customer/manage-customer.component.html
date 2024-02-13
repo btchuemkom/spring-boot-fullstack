@@ -1,0 +1,73 @@
+<div>
+  <h2>{{operation === 'update' ? 'Update customer' : 'New Customer'}}</h2>
+  <div class="field">
+    <label for="firstname">Name</label>
+    <input
+      [(ngModel)]="customerRegistrationRequest.name"
+      id="firstname"
+      pInputText
+      placeholder="Jane"
+      type="text"
+      class="w-full"
+    >
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input
+      [(ngModel)]="customerRegistrationRequest.email"
+      id="email"
+      pInputText
+      placeholder="Jane@gmail.com"
+      type="email"
+      class="w-full"
+    >
+  </div>
+  <div class="field">
+    <label for="age">Age</label>
+    <input
+      [(ngModel)]="customerRegistrationRequest.age"
+      id="age"
+      pInputText
+      placeholder="34"
+      type="number"
+      class="w-full"
+    >
+  </div>
+  <div class="field" *ngIf="operation === 'create'">
+    <label for="password">Password</label>
+    <input
+      [(ngModel)]="customerRegistrationRequest.password"
+      id="password"
+      pInputText
+      placeholder="password"
+      type="password"
+      class="w-full"
+    >
+  </div>
+  <div class="field" *ngIf="operation === 'create'">
+    <label for="gender">Gender</label>
+    <select
+      [(ngModel)]="customerRegistrationRequest.gender"
+      id="gender"
+      class="p-dropdown w-full custom-select"
+    >
+      <option value="">Select an Option</option>
+      <option value="MALE">MALE</option>
+      <option value="FEMALE">FEMALE</option>
+    </select>
+  </div>
+
+  <button
+    [disabled]="!isCustomerValid"
+    pButton
+    label="Submit"
+    class="w-full"
+    (click)="onSubmit()"
+  ></button>
+  <button
+    pButton
+    label="Cancel"
+    class="w-full p-button-outlined p-button-danger mt-2"
+    (click)="onCancel()"
+  ></button>
+</div>
